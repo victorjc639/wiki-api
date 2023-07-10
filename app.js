@@ -21,6 +21,7 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
+//Route for ALL ARTICLES
 
 app.route('/articles')
 
@@ -62,6 +63,20 @@ app.route('/articles')
     };
   });
 });
+
+
+//Route for specific articles
+
+app.route("/articles/:specificArticleTitle")
+  .get((req, res) => {
+    Article.findOne({ title: req.params.specificArticleTitle })
+      .then((contentReturned) => {
+        res.send(contentReturned);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  });
 
 
 
