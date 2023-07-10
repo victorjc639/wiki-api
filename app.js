@@ -12,9 +12,14 @@ app.use(bodyParser.urlencoded({
   }));
 app.use(express.static("public"));
   
+mongoose.connect("mongodb://127.0.0.1:27017/wikiDB");
 
+const articleSchema = {
+  title: String,
+  content: String
+};
 
-
+const Article = mongoose.model("Article", articleSchema);
 //TODO
  
 
