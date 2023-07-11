@@ -76,6 +76,20 @@ app.route("/articles/:specificArticleTitle")
       .catch((err) => {
         res.send(err);
       });
+  })
+
+  .put((req, res) => {
+    Article.replaceOne(
+      {title: req.params.specificArticleTitle},
+      {title: req.body.title, content: req.body.content}
+    )
+    .then((err) => {
+      if(!err){
+        res.send("Successfully updated article");
+      }else{
+        res.send(err);
+      }
+    })
   });
 
 
