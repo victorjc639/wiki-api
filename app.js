@@ -104,6 +104,17 @@ app.route("/articles/:specificArticleTitle")
         res.send(err);
       }
     });
+  })
+
+  .delete((req, res) => {
+    Article.deleteOne({title: req.params.specificArticleTitle})
+    .then((err) => {
+      if(!err){
+        res.send("Successfully deleted");
+      }else{
+        res.send(err);
+      }
+    });
   });
 
 
