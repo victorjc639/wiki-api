@@ -90,6 +90,20 @@ app.route("/articles/:specificArticleTitle")
         res.send(err);
       }
     })
+  })
+
+  .patch((req, res) => {
+    Article.updateOne(
+      {title: req.params.specificArticleTitle},
+      {$set: req.body}
+    )
+    .then((err) => {
+      if(!err){
+        res.send("Successfully updated article");
+      }else{
+        res.send(err);
+      }
+    });
   });
 
 
